@@ -158,6 +158,7 @@ public class ArvoreB {
         noAux.setFolha(noF.isFolha());
         noAux.setN(t);
 
+        
         //Passa as T últimas chaves do noF para o noExtra
         for (int j = 0; j < t; j++) {
             if ((ordem - 1) % 2 == 0) {
@@ -207,6 +208,48 @@ public class ArvoreB {
 
     }
   
+    
+    /*
+        * Método para imprimir a àrvore;
+        * Imprime o nó raíz;
+        * Realiza a impressão da árvore em pré-ordem
+    */
+    
+    public void imprimir(No n){
+        for (int i = 0; i < n.getN(); i++){
+            System.out.println(n.getChave().get(i)+"");
+        }
+        
+        if(!n.isFolha()){
+            for(int j = 0; j <= n.getN(); j++){
+                if(n.getFilho().get(j) != null){
+                    System.out.println();
+                    imprimir(n.getFilho().get(j));
+                }
+            }
+        }
+    
+    }
+    
+    /*
+        * Realizar a impressão da chave
+        * Cria um nó temporário e pesquisa o nó
+        * Se o no estiver null, informa que a chave não existe.
+        * Se estiver com algo, retorna o valor encontrado.
+    */
+    public void ImprimirNodoPesquisa(ArvoreB b, int v){
+        No temp = new No(ordem);
+        
+        temp = BuscaChave(b.raiz, v);
+        
+        if (temp == null){
+            System.out.println("Essa chave não existe na árvore");
+        } else{
+            imprimir(temp);
+        }
+    }
+    
+    
 
 
 }
