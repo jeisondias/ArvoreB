@@ -1,28 +1,21 @@
 //Essa é a implementação da classe nó em uma árvore balanceada
 package arvorebfinal;
 
-
-/*
-  * 
-  * 
-  * 
-  *
-*/
-
+import java.util.ArrayList;
 
 public class No {
     
     private int n; //Atributo que guarda a quantidade de chaves no nó
-    private int[] chave; //vetor das chaves
-    private No[] filho;//vetor dos filhos
+    private ArrayList<Integer> chave; //vetor das chaves
+    private ArrayList<No> filho;//vetor dos filhos
     private boolean folha;//Atributo que indica se a nó eh folha ou nao
           
     public No(int n) {
-        this.chave = new int[n - 1];
+        this.chave = new ArrayList<>(n-1);
         for (int i = 0; i < n - 1; i++) {
             this.chave = null;
         }
-        this.filho = new No[n];
+        this.filho = new ArrayList<>(n);
         for (int i = 0; i < n; i++) {
             this.filho = null;
         }
@@ -47,22 +40,22 @@ public class No {
         this.n = n;
     }
 
-    public int[] getChave() {
+    public ArrayList<Integer> getChave() {
         return chave;
     }
 
-    public void setChave(int[] chave) {
+    public void setChave(ArrayList<Integer> chave) {
         this.chave = chave;
     }
 
-    public No[] getFilho() {
+    public ArrayList<No> getFilho() {
         return filho;
     }
 
-    public void setFilho(No[] filho) {
+    public void setFilho(ArrayList<No> filho) {
         this.filho = filho;
     }
     
-    
+   
 
 }
