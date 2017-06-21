@@ -14,12 +14,12 @@ package arvorebfinal;
 
 public class No {
     
-    static int t;
-    int cont;
-    int key[];
-    No filho[];
-    boolean folha;
-    No pai;
+    private static int t;
+    private int cont;
+    private int key[];
+    private No filho[];
+    private boolean folha;
+    private No pai;
     
     public No(){}
     
