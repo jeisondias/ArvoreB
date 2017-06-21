@@ -1,15 +1,20 @@
 package arvorebfinal;
 
 public class ArvoreB {
+    /*
+      * Nó raiz;
+      * Ordem da Arvore B;
+      * Contador para a quantidade de elementos na arvore B;
+    */
+   
+    private No raiz;
+    private int ordem;
+    private int nElementos; 
 
-    //Atributos da Classe ArvoreB
-    private No raiz; //Atributo do Nó raiz;
-    private int ordem; //Ordem da Arvore-B;
-    private int nElementos; //Contador para a quantidade de elementos na arvore B;
-
-    //Construtor da Classe ArvoreB
-    //Cria um novo nó para a raiz, seta a ordem passada como paâmetro e inicializa
-    //o atributo contador de numeros de elementos
+    /*
+      * Cria um novo nó para a raiz, seta a ordem passada como parâmetro e inicializa
+      * O atributo contador de numeros de elementos
+    */
     public ArvoreB(int n) {
         this.raiz = new No(n);
         this.ordem = n;
@@ -107,9 +112,6 @@ public class ArvoreB {
     /* 
         * Método para realizar a inserção em um nó não cheio;
         * noI = nó que será inserido e chave = chave que será inserida       
-        * Método para realizar a inserção em um nó não cheio;
-        * Método para realizar a inserção em um nó não cheio;
-        * Método para realizar a inserção em um nó não cheio;
     */
     public void inserirNoNaoCheio(No noI, int chave){
         int i = noI.getN() - 1;
@@ -144,8 +146,66 @@ public class ArvoreB {
     }
     
     
-    //Math.Floor retorna o maior número int que é menor ou igual ao argumento
-    public void divideNo(No noP, int i, No noF){}
+    /*
+        * Math.Floor retorna o maior número int que é menor ou igual ao argumento
+        * Nop = Nó pai, noF = Nó filho e o i = indíce que o noF é o i-ésimo filho de x;
+        * O método realiza a divisão dos nós
+    */
+    public void divideNo(No noP, int i, No noF) {
+        int t = (int) Math.floor((ordem - 1) / 2);
+        //Nó Auxiliar é utilizado para poder realizar a divisão
+        No noAux = new No(ordem);
+        noAux.setFolha(noF.isFolha());
+        noAux.setN(t);
+
+        //Passa as T últimas chaves do noF para o noExtra
+        for (int j = 0; j < t; j++) {
+            if ((ordem - 1) % 2 == 0) {
+                noAux.getChave().set(j, noF.getChave().get(j + t));
+            } else {
+                noAux.getChave().set(j, noF.getChave().get(j + t + 1));
+            }
+            noF.setN(noF.getN() - 1);
+        }
+
+        //Se o nó filho não for folha, ele passa os t+1 últimos filhos de noF para noExtra
+        if (!noF.isFolha()) {
+            for (int j = 0; j < t + 1; j++) {
+                if ((ordem - 1) % 2 == 0) {
+                    noAux.getFilho().set(j, noF.getFilho().get(j + t));
+                } else {
+                    noAux.getFilho().set(j, noF.getFilho().get(j + t + 1));
+                }
+            }
+        }
+        //Realiza a definição do novo valor das quantidade de chaves de noF
+        noF.setN(t);
+
+        //Pega os filhos do nó Pai e descola para a direita
+        for (int j = noP.getN(); j > i; j--) { 
+            noP.getFilho().set(j + 1, noP.getFilho().get(j));
+        }
+        // Define o noAux como filho do noP na posição i+1
+        noP.getFilho().set(i + 1, noAux);
+
+        // Passa as chaves do noP para uma posição a direita, para realizar a substituição de noF
+        for (int j = noP.getN(); j > i; j--) {
+            noP.getChave().set(j, noP.getChave().get(j - 1));
+        }
+
+        //Passa a chave do noF para o noExtra
+        if ((ordem - 1) % 2 == 0) {
+            noP.getChave().set(i, noF.getChave().get(t - 1));
+            noF.setN(noF.getN() - 1);
+            
+        } else {
+            noP.getChave().set(i, noF.getChave().get(t));
+        }
+
+        //Incrementa o número de chaves do nó Pai (noP)
+        noP.setN(noP.getN() + 1);
+
+    }
   
 
 
