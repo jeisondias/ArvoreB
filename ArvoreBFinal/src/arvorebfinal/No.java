@@ -3,54 +3,66 @@ package arvorebfinal;
 
 
 /*
-  * Variáveis que determinam a ordem da árvore;
-  * Número de chaves no nó
-  * Array com os valores das chaves
-  * Array com as referências do filho
-  * Checa se o nodo é folha ou não
-  * Pai do nó atual
+  * 
+  * 
+  * 
+  *
 */
 
 
 public class No {
     
-    private static int t;
-    private int cont;
-    private int key[];
-    private No filho[];
-    private boolean folha;
-    private No pai;
+    private int n; //Atributo que guarda a quantidade de chaves no nó
+    private int[] chave; //vetor das chaves
+    private No[] filho;//vetor dos filhos
+    private boolean folha;//Atributo que indica se a nó eh folha ou nao
+          
+    public No(int n) {
+        this.chave = new int[n - 1];
+        for (int i = 0; i < n - 1; i++) {
+            this.chave = null;
+        }
+        this.filho = new No[n];
+        for (int i = 0; i < n; i++) {
+            this.filho = null;
+        }
+        this.folha = true;
+        this.n = 0;
+    }
+
     
-    public No(){}
-    
-    /*
-       * Construtor que será chamado na árvore B.java para um novo nó com valores;
-       * pai = Marca o pai;
-       * key = array de tamanho adequado;
-       * filho = Array de referência com tamanho próprio;
-       * folha = inicialmente todo nó é uma folha
-       * contador até adicionar as chaves
-    */
-    
-    public No(int t, No pai){
-        this.t = t;
-        this.pai = pai;
-        key = new int[2*t-1];
-        filho = new No[2*t];
-        folha = true;
-        cont = 0;
+    public boolean isFolha() {
+        return folha;
+    }
+
+    public void setFolha(boolean folha) {
+        this.folha = folha;
+    }
+
+    public int getN() {
+        return n;
+    }
+
+    public void setN(int n) {
+        this.n = n;
+    }
+
+    public int[] getChave() {
+        return chave;
+    }
+
+    public void setChave(int[] chave) {
+        this.chave = chave;
+    }
+
+    public No[] getFilho() {
+        return filho;
+    }
+
+    public void setFilho(No[] filho) {
+        this.filho = filho;
     }
     
-    // Retorna a chave na posição do indice
-    public int getValor(int indice){
-        return key[indice];
-    }
     
-    // retorna o indice do nó filho
-    
-    public No getFilho(int indice){
-        return filho[indice];
-    }
-    
-    
+
 }
